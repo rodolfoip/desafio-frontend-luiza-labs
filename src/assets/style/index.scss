@@ -1,5 +1,8 @@
 // Reset css
 @import '~reseter.css/src/scss/reseter.scss';
 
+// Variables
+@import './variables';
+
 // Helper
-@import './helper/index.scss';
+@import './helper';

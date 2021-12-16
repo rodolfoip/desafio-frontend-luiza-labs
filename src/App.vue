@@ -3,4 +3,13 @@
     <router-view/>
   </div>
 </template>
-<style lang="scss" src="@/assets/style/index.scss"></style>
+
+<style lang="scss" scoped>
+  #app {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 100vh;
+  }
+</style>
