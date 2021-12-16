@@ -1,0 +1,13 @@
+@mixin media-query-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+
+  @if $min {
+    @media screen and (min-width: $min) {
+      @content;
+    }
+  }
+
+  @else {
+    @content;
+  }
+}
