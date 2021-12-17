@@ -31,6 +31,11 @@
             Somente favoritos
           </button>
         </div>
+        <ul class="content-list">
+          <li v-for="i of 14" :key="i" class="content-list__item">
+            <Card />
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -44,6 +49,7 @@ export default {
     Header: () => import('@/components/Header.vue'),
     Search: () => import('@/components/SearchBar.vue'),
     Toggle: () => import('@/components/Toggle.vue'),
+    Card: () => import('@/components/Card.vue'),
   },
 };
 </script>
@@ -129,6 +135,20 @@ export default {
             opacity: 0;
           }
         }
+      }
+    }
+
+    &-list {
+      display: flex;
+      flex-flow: row wrap;
+      margin-top: -1rem;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      padding-left: 0;
+      list-style: none;
+
+      &__item {
+        flex: 0 0 25%;
       }
     }
   }
