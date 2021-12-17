@@ -1,0 +1,41 @@
+<template>
+  <button class="toggle">
+    <img
+      v-if="active"
+      src="@/assets/icons/toggle_on.svg"
+      alt="hero icon"
+      class="img-responsive"
+    />
+    <img
+      v-else
+      src="@/assets/icons/toggle_off.svg"
+      alt="hero icon"
+      class="img-responsive"
+    />
+  </button>
+</template>
+
+<script>
+export default {
+  name: 'Toggle',
+
+  props: {
+    active: {
+      type: Boolean,
+      required: true,
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.toggle {
+  background: none;
+  border: none;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+}
+</style>
