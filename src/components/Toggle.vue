@@ -1,5 +1,5 @@
 <template>
-  <button class="toggle">
+  <button class="toggle" @click="toggle">
     <img
       v-if="active"
       src="@/assets/icons/toggle_on.svg"
@@ -25,6 +25,12 @@ export default {
       required: true,
     },
   },
+
+  methods: {
+    toggle() {
+      this.$emit('toggle')
+    }
+  }
 };
 </script>
 
