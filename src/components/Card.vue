@@ -28,8 +28,6 @@ export default {
 
 <style lang="scss" scoped>
   .card {
-    padding: 1rem;
-
     &__image {
       display: inline-flex;
       border-bottom: .25rem $red solid;
