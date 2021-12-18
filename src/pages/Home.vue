@@ -38,6 +38,7 @@
         </ul>
       </div>
     </div>
+    <footer class="footer"></footer>
   </div>
 </template>
 
@@ -71,6 +72,11 @@ export default {
 
 <style lang="scss" scoped>
 .home {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1;
+  justify-content: space-between;
+
   .page-header {
     margin-bottom: 3rem;
     text-align: center;
@@ -220,6 +226,12 @@ export default {
         }
       }
     }
+  }
+
+  .footer {
+    height: 3rem;
+    margin-top: 3rem;
+    background-color: $red;
   }
 }
 </style>
