@@ -1,6 +1,6 @@
 <template>
   <label for="search" class="search">
-    <button class="search__button">
+    <button class="search__button" @click="search">
       <img
         src="@/assets/icons/ic_busca.svg"
         alt="search icon"
@@ -13,6 +13,7 @@
       id="search-input"
       placeholder="Procure por heróis"
       class="search__input"
+      v-model="searchValue"
     />
   </label>
 </template>
@@ -20,6 +21,18 @@
 <script>
 export default {
   name: 'searchBar',
+
+  data() {
+    return {
+      searchValue: '',
+    };
+  },
+
+  methods: {
+    search(){
+      this.$emit('search', this.searchValue);
+    },
+  },
 };
 </script>
 
