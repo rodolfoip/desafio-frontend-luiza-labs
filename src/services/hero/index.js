@@ -1,12 +1,12 @@
 import qs from 'qs';
 import { API } from '../index';
 
-const getHeroes = ({ page, nameStartsWith, orderBy }) => {
+const getHeroes = ({ page, name, orderBy }) => {
   const limit = 20;
   const from = ((page || 1) - 1) * limit;
 
   const query = {
-    nameStartsWith,
+    nameStartsWith: name || undefined,
     orderBy,
     limit,
     offset: from,

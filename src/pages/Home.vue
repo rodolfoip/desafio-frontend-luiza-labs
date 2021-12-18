@@ -8,7 +8,7 @@
           Mergulhe no domínio deslumbrante de todos os personagens clássicos
           que você ama - e aqueles que vcoê descrubrirá em breve!
         </p>
-        <Search />
+        <Search @search="searchByName" />
       </div>
       <div class="content">
         <div class="content-info">
@@ -22,7 +22,7 @@
               class="img-responsive hero"
             />
             <span class="text">Ordernar por nome - A/Z</span>
-            <Toggle class="toggle" :active="true" />
+            <Toggle class="toggle" :active="this.filters.orderByAsc" @toggle="toggleOrderBy" />
           </div>
           <button class="content-info__favorites">
             <figure class="icon">
@@ -32,7 +32,7 @@
           </button>
         </div>
         <ul class="content-list">
-          <li v-for="hero, index of heroesList" :key="index" class="content-list__item">
+          <li v-for="(hero, index) of heroesList" :key="index" class="content-list__item">
             <Card :title="hero.name" :image="hero.thumbnail" />
           </li>
         </ul>
@@ -43,7 +43,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Home',
 
@@ -54,19 +55,39 @@ export default {
     Card: () => import('@/components/Card.vue'),
   },
 
+  data() {
+    return {
+      filters: {
+        page: 1,
+        name: '',
+        orderByAsc: true,
+      },
+    };
+  },
+
   mounted () {
-    this.getHeroes;
+    this.getHeroes();
   },
 
   computed: {
     ...mapGetters({
       heroesList: 'hero/heroesList',
     }),
-    ...mapActions({
-      getHeroes: 'hero/get',
-    })
   },
 
+  methods: {
+    getHeroes() {
+      this.$store.dispatch('hero/get', this.filters);
+    },
+    searchByName(value) {
+      this.filters.name = value;
+      this.getHeroes();
+    },
+    toggleOrderBy() {
+      this.filters.orderByAsc = !this.filters.orderByAsc;
+      this.getHeroes();
+    }
+  },
 };
 </script>
 

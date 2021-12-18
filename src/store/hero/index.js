@@ -13,10 +13,12 @@ export default {
     setHeroes: (state, heroes) => { (state.heroes = heroes); },
   },
   actions: {
-    get: ({ commit }, { page, nameStartsWith, orderBy }) => {
+    get: ({ commit }, { page, name, orderByAsc }) => {
       commit('hero/setHeroes', [], { root: true });
 
-      return getHeroes({ page, nameStartsWith, orderBy })
+      const orderBy =  orderByAsc ? 'name' : '-name';
+
+      return getHeroes({ page, name, orderBy })
         .then((response) => {
           const { data } = response;
           commit('hero/setHeroes', data.data.results, { root: true });
