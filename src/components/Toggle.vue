@@ -32,6 +32,7 @@ export default {
 .toggle {
   background: none;
   border: none;
+  padding: 0;
 
   &:hover,
   &:focus {
