@@ -183,13 +183,25 @@ export default {
     &-list {
       display: flex;
       flex-flow: row wrap;
+      overflow: hidden;
+      margin: 0 -1rem;
       list-style: none;
 
       &__item {
         flex: 0 0 50%;
+        margin-top: 2rem;
+        padding: 0 1rem;
+
+        &:nth-child(-n+2){
+          margin-top: 0;
+        }
 
         @include media-query-min('md'){
-          flex: 0 0 25%;
+          flex-basis: 25%;
+
+          &:nth-child(-n+4){
+            margin-top: 0;
+          }
         }
       }
     }
