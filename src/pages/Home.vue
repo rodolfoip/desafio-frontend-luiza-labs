@@ -22,7 +22,7 @@
               class="img-responsive hero"
             />
             <span class="text">Ordernar por nome - A/Z</span>
-            <Toggle :active="true" />
+            <Toggle class="toggle" :active="true" />
           </div>
           <button class="content-info__favorites">
             <figure class="icon">
@@ -76,34 +76,70 @@ export default {
   .content {
     &-info {
       display: flex;
-      align-items: center;
+      flex-flow: column nowrap;
       justify-content: space-between;
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
+
+      @include media-query-min('md') {
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      @include media-query-min('lg') {
+        font-size: 1.2rem;
+      }
 
       &__count {
         flex: 1 0 auto;
+        order: 1;
         color: $text-color;
+
+        @include media-query-min('md') {
+          order: 0;
+        }
       }
 
       &__order-by,
       &__favorites {
         display: flex;
         align-items: center;
-        flex: 0 0 auto;
+        flex: 1 0 auto;
+        margin-bottom: .5rem;
         color: $congo-pink;
+
+        @include media-query-min('md') {
+          margin-bottom: 0;
+        }
+
+        @include media-query-min('lg') {
+          flex-grow: 0;
+        }
       }
 
       &__order-by {
-        margin-right: 2rem;
+        @include media-query-min('md') {
+          margin-right: 2rem;
+        }
 
         > .text {
+          flex: 1 0 auto;
           margin-left: 1rem;
-          margin-right: 1.5rem;
+          margin-right: 1rem;
+
+          @include media-query-min('md') {
+            margin-right: 1.5rem;
+          }
         }
 
         > .hero {
-          min-width: 1.5rem;
+          @include media-query-min('lg') {
+            min-width: 1.5rem;
+          }
+        }
+
+        > .toggle {
+          max-width: 3rem;
         }
       }
 
@@ -111,6 +147,7 @@ export default {
         border: none;
         background: none;
         font-size: unset;
+        padding: 0;
 
         &:hover,
         &:focus {
@@ -124,11 +161,16 @@ export default {
         > .icon {
           width: 100%;
           height: 100%;
-          max-width: 1.45rem;
-          max-height: 1.45rem;
+          max-width: 1.25rem;
+          max-height: 1.25rem;
           margin-right: 1rem;
           background: url('~@/assets/icons/favorito_01.svg') center/cover no-repeat;
           transition: background .2s ease-out;
+
+          @include media-query-min('md') {
+            max-width: 1.45rem;
+            max-height: 1.45rem;
+          }
 
           > figcaption {
             color: transparent;
@@ -141,14 +183,14 @@ export default {
     &-list {
       display: flex;
       flex-flow: row wrap;
-      margin-top: -1rem;
-      margin-left: -1rem;
-      margin-right: -1rem;
-      padding-left: 0;
       list-style: none;
 
       &__item {
-        flex: 0 0 25%;
+        flex: 0 0 50%;
+
+        @include media-query-min('md'){
+          flex: 0 0 25%;
+        }
       }
     }
   }
