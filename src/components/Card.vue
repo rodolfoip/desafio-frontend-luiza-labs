@@ -2,14 +2,14 @@
   <div class="card">
     <figure class="card__image">
       <img
-        src="http://placehold.jp/160x160.png"
+        :src="imageUrl"
         alt="hero image"
         class="img-responsive"
       >
     </figure>
     <div class="card__content">
       <h4 class="card__title">
-        Star-Lord
+        {{ title }}
       </h4>
       <FavButton class="card__favorite" hiddenText="favoritar herói" :active="false" />
     </div>
@@ -23,6 +23,23 @@ export default {
   components: {
     FavButton: () => import('@/components/FavoriteButton.vue'),
   },
+
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  computed: {
+    imageUrl () {
+      return `${this.image.path}.${this.image.extension}`;
+    }
+  }
 };
 </script>
 
@@ -32,6 +49,13 @@ export default {
       display: inline-flex;
       border-bottom: .25rem $red solid;
       margin-bottom: 1rem;
+      min-height: 260px;
+
+      > img {
+        width: 298px;
+        height: 298px;
+        object-fit: cover;
+      }
     }
 
     &__content {

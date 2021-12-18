@@ -32,8 +32,8 @@
           </button>
         </div>
         <ul class="content-list">
-          <li v-for="i of 14" :key="i" class="content-list__item">
-            <Card />
+          <li v-for="hero, index of heroesList" :key="index" class="content-list__item">
+            <Card :title="hero.name" :image="hero.thumbnail" />
           </li>
         </ul>
       </div>
@@ -42,15 +42,30 @@
 </template>
 
 <script>
-
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'Home',
+
   components: {
     Header: () => import('@/components/Header.vue'),
     Search: () => import('@/components/SearchBar.vue'),
     Toggle: () => import('@/components/Toggle.vue'),
     Card: () => import('@/components/Card.vue'),
   },
+
+  mounted () {
+    this.getHeroes;
+  },
+
+  computed: {
+    ...mapGetters({
+      heroesList: 'hero/heroesList',
+    }),
+    ...mapActions({
+      getHeroes: 'hero/get',
+    })
+  },
+
 };
 </script>
 
