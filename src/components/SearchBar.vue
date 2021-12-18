@@ -1,21 +1,23 @@
 <template>
-  <label for="search" class="search">
-    <button class="search__button" @click="search">
-      <img
-        src="@/assets/icons/ic_busca.svg"
-        alt="search icon"
-        class="img-responsive search__icon"
+  <form @submit.prevent="search">
+    <label for="search" class="search">
+      <button class="search__button"  type="submit">
+        <img
+          src="@/assets/icons/ic_busca.svg"
+          alt="search icon"
+          class="img-responsive search__icon"
+        />
+      </button>
+      <input
+        type="text"
+        name="search"
+        id="search-input"
+        placeholder="Procure por heróis"
+        class="search__input"
+        v-model="searchValue"
       />
-    </button>
-    <input
-      type="text"
-      name="search"
-      id="search-input"
-      placeholder="Procure por heróis"
-      class="search__input"
-      v-model="searchValue"
-    />
-  </label>
+    </label>
+  </form>
 </template>
 
 <script>
