@@ -34,6 +34,8 @@
               :image="hero.thumbnail"
               :active-favorite="isFavorite(hero.id)"
               :disable-favorite-button="!isFavorite(hero.id) && !favoriteIsAble"
+              clickable
+              @on-click="showHeroDetails(hero)"
               @toggle-favorite="toggleFavorite(hero)"
             />
           </li>
@@ -126,6 +128,14 @@ export default {
     nextPage() {
       this.filters.page++;
       this.getHeroes();
+    },
+    showHeroDetails(hero) {
+      this.$router.push({
+        name: 'Hero',
+        params: {
+          id: hero.id
+        }
+      });
     }
   }
 };
