@@ -32,5 +32,13 @@
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-axios": "0.0.4",
     "vue-template-compiler": "^2.6.11"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "useTabs": false,
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "none"
   }
 }

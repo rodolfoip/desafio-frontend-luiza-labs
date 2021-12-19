@@ -1,8 +1,25 @@
 <template>
   <button class="favorite" :class="{ active: active }">
-    <img v-show="active && !activeHover" @mouseenter="activeHover = true" src="@/assets/icons/favorito_01.svg" alt="favorite icon" class="img-responsive">
-    <img v-show="active && activeHover" @mouseleave="activeHover = false" src="@/assets/icons/favorito_03.svg" alt="favorite icon" class="img-responsive">
-    <img v-show="!active" src="@/assets/icons/favorito_02.svg" alt="favorite icon" class="img-responsive">
+    <img
+      v-show="active && !activeHover"
+      @mouseenter="activeHover = true"
+      src="@/assets/icons/favorito_01.svg"
+      alt="favorite icon"
+      class="img-responsive"
+    />
+    <img
+      v-show="active && activeHover"
+      @mouseleave="activeHover = false"
+      src="@/assets/icons/favorito_03.svg"
+      alt="favorite icon"
+      class="img-responsive"
+    />
+    <img
+      v-show="!active"
+      src="@/assets/icons/favorito_02.svg"
+      alt="favorite icon"
+      class="img-responsive"
+    />
     <div v-if="text" class="favorite-text">
       {{ text }}
     </div>
@@ -17,21 +34,21 @@ export default {
   props: {
     text: {
       type: String,
-      default: '',
+      default: ''
     },
     hiddenText: {
       type: String,
-      default: '',
+      default: ''
     },
     active: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
 
   data() {
     return {
-      activeHover: false,
+      activeHover: false
     };
   }
 };

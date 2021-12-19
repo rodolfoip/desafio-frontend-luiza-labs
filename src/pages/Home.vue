@@ -5,22 +5,16 @@
       <div class="page-header">
         <h2 class="page-header__title">Explore o universo</h2>
         <p class="page-header__description">
-          Mergulhe no domínio deslumbrante de todos os personagens clássicos
-          que você ama - e aqueles que vcoê descrubrirá em breve!
+          Mergulhe no domínio deslumbrante de todos os personagens clássicos que você ama - e
+          aqueles que vcoê descrubrirá em breve!
         </p>
         <Search @search="searchByName" />
       </div>
       <div class="content">
         <div class="content-info">
-          <div v-if="pageCount" class="content-info__count">
-            Encontrados {{ pageCount }} heróis
-          </div>
+          <div v-if="pageCount" class="content-info__count">Encontrados {{ pageCount }} heróis</div>
           <div class="content-info__order-by">
-            <img
-              src="@/assets/icons/ic_heroi.svg"
-              alt="hero icon"
-              class="img-responsive hero"
-            />
+            <img src="@/assets/icons/ic_heroi.svg" alt="hero icon" class="img-responsive hero" />
             <span class="text">Ordernar por nome - A/Z</span>
             <Toggle class="toggle" :active="this.filters.orderByAsc" @toggle="toggleOrderBy" />
           </div>
@@ -48,7 +42,7 @@ export default {
     Search: () => import('@/components/SearchBar.vue'),
     Toggle: () => import('@/components/Toggle.vue'),
     Card: () => import('@/components/Card.vue'),
-    FavButton: () => import('@/components/FavoriteButton.vue'),
+    FavButton: () => import('@/components/FavoriteButton.vue')
   },
 
   data() {
@@ -56,20 +50,20 @@ export default {
       filters: {
         page: 1,
         name: '',
-        orderByAsc: true,
-      },
+        orderByAsc: true
+      }
     };
   },
 
-  mounted () {
+  mounted() {
     this.getHeroes();
   },
 
   computed: {
     ...mapGetters({
       heroesList: 'hero/heroesList',
-      pageCount: 'hero/pageCount',
-    }),
+      pageCount: 'hero/pageCount'
+    })
   },
 
   methods: {
@@ -84,7 +78,7 @@ export default {
       this.filters.orderByAsc = !this.filters.orderByAsc;
       this.getHeroes();
     }
-  },
+  }
 };
 </script>
 
@@ -141,7 +135,7 @@ export default {
 
       &__order-by,
       &__favorites {
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
 
         @include media-query-min('md') {
           margin-bottom: 0;
@@ -195,7 +189,7 @@ export default {
       margin: 0 -1rem;
       list-style: none;
 
-      @include media-query-min('sm'){
+      @include media-query-min('sm') {
         display: flex;
       }
 
@@ -208,16 +202,16 @@ export default {
           margin-top: 0;
         }
 
-        @include media-query-min('sm'){
-          &:nth-child(-n+2){
+        @include media-query-min('sm') {
+          &:nth-child(-n + 2) {
             margin-top: 0;
           }
         }
 
-        @include media-query-min('md'){
+        @include media-query-min('md') {
           flex-basis: 25%;
 
-          &:nth-child(-n+4){
+          &:nth-child(-n + 4) {
             margin-top: 0;
           }
         }
@@ -227,7 +221,7 @@ export default {
           margin-left: auto;
           margin-right: auto;
 
-          @include media-query-min('sm'){
+          @include media-query-min('sm') {
             max-width: unset;
           }
         }

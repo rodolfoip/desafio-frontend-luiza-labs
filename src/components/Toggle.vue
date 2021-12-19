@@ -1,17 +1,7 @@
 <template>
   <button class="toggle" @click="toggle">
-    <img
-      v-if="active"
-      src="@/assets/icons/toggle_on.svg"
-      alt="hero icon"
-      class="img-responsive"
-    />
-    <img
-      v-else
-      src="@/assets/icons/toggle_off.svg"
-      alt="hero icon"
-      class="img-responsive"
-    />
+    <img v-if="active" src="@/assets/icons/toggle_on.svg" alt="hero icon" class="img-responsive" />
+    <img v-else src="@/assets/icons/toggle_off.svg" alt="hero icon" class="img-responsive" />
   </button>
 </template>
 
@@ -22,13 +12,13 @@ export default {
   props: {
     active: {
       type: Boolean,
-      required: true,
-    },
+      required: true
+    }
   },
 
   methods: {
     toggle() {
-      this.$emit('toggle')
+      this.$emit('toggle');
     }
   }
 };

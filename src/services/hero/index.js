@@ -9,13 +9,10 @@ const getHeroes = ({ page, name, orderBy }) => {
     nameStartsWith: name || undefined,
     orderBy,
     limit,
-    offset: from,
+    offset: from
   };
 
-  return API.get(`/characters${qs.stringify(
-    query,
-    { addQueryPrefix: true },
-  )}`);
+  return API.get(`/characters${qs.stringify(query, { addQueryPrefix: true })}`);
 };
 
 export { getHeroes };

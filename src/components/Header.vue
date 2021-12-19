@@ -1,14 +1,13 @@
 <template>
   <header class="header">
-    <img src="@/assets/img/logo.svg" alt="header logo" class="img-responsive header-logo">
+    <img src="@/assets/img/logo.svg" alt="header logo" class="img-responsive header-logo" />
   </header>
 </template>
 
 <script>
 export default {
-  name: 'Header',
+  name: 'Header'
 };
-
 </script>
 
 <style lang="scss">

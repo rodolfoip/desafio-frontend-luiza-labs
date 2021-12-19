@@ -11,7 +11,7 @@ export default {
   getters: {
     heroesList: (state) => state.heroes,
     pageCount: (state) => state.pageCount,
-    favoriteHeroes: (state) => state.favoriteHeroes,
+    favoriteHeroes: (state) => state.favoriteHeroes
   },
   mutations: {
     setHeroes: (state, heroes) => (state.heroes = heroes),
@@ -25,22 +25,21 @@ export default {
     get: ({ commit }, { page, name, orderByAsc }) => {
       commit('hero/setHeroes', [], { root: true });
 
-      const orderBy =  orderByAsc ? 'name' : '-name';
+      const orderBy = orderByAsc ? 'name' : '-name';
 
-      return getHeroes({ page, name, orderBy })
-        .then((response) => {
-          const { data } = response;
-          commit('hero/setHeroes', data.data.results, { root: true });
-          commit('hero/setPageCount', data.data.count, { root: true });
+      return getHeroes({ page, name, orderBy }).then((response) => {
+        const { data } = response;
+        commit('hero/setHeroes', data.data.results, { root: true });
+        commit('hero/setPageCount', data.data.count, { root: true });
 
-          return data.results;
-        });
+        return data.results;
+      });
     },
     addFavoriteHero: ({ commit }, heroId) => {
-      commit('hero/addFavoriteHero', heroId, { root: true })
+      commit('hero/addFavoriteHero', heroId, { root: true });
     },
     removeFavoriteHero: ({ commit }, heroId) => {
-      commit('hero/removeFavoriteHero', heroId, { root: true })
+      commit('hero/removeFavoriteHero', heroId, { root: true });
     }
   }
 };

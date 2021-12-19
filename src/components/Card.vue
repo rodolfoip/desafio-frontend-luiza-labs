@@ -1,11 +1,7 @@
 <template>
   <div class="card">
     <figure class="card__image">
-      <img
-        :src="imageUrl"
-        alt="hero image"
-        class="img-responsive"
-      >
+      <img :src="imageUrl" alt="hero image" class="img-responsive" />
     </figure>
     <div class="card__content">
       <h4 class="card__title">
@@ -21,22 +17,22 @@ export default {
   name: 'Card',
 
   components: {
-    FavButton: () => import('@/components/FavoriteButton.vue'),
+    FavButton: () => import('@/components/FavoriteButton.vue')
   },
 
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     image: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
 
   computed: {
-    imageUrl () {
+    imageUrl() {
       return `${this.image.path}.${this.image.extension}`;
     }
   }
@@ -44,28 +40,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .card {
-    &__image {
-      display: inline-flex;
-      border-bottom: .25rem $red solid;
-      margin-bottom: 1rem;
-      min-height: 260px;
+.card {
+  &__image {
+    display: inline-flex;
+    border-bottom: 0.25rem $red solid;
+    margin-bottom: 1rem;
+    min-height: 260px;
 
-      > img {
-        width: 298px;
-        height: 298px;
-        object-fit: cover;
-      }
-    }
-
-    &__content {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    &__title {
-      font-size: 1.25rem;
-      color: $title-color;
+    > img {
+      width: 298px;
+      height: 298px;
+      object-fit: cover;
     }
   }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    color: $title-color;
+  }
+}
 </style>
