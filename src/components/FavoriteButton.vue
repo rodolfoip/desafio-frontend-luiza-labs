@@ -1,5 +1,8 @@
 <template>
   <button class="favorite" :class="{ active: active }">
+    <img v-show="active && !activeHover" @mouseenter="activeHover = true" src="@/assets/icons/favorito_01.svg" alt="favorite icon" class="img-responsive">
+    <img v-show="active && activeHover" @mouseleave="activeHover = false" src="@/assets/icons/favorito_03.svg" alt="favorite icon" class="img-responsive">
+    <img v-show="!active" src="@/assets/icons/favorito_02.svg" alt="favorite icon" class="img-responsive">
     {{ text }}
     <span class="favorite-hidden-text">{{ hiddenText }}</span>
   </button>
@@ -23,6 +26,12 @@ export default {
       default: false,
     },
   },
+
+  data() {
+    return {
+      activeHover: false,
+    };
+  }
 };
 </script>
 
@@ -35,20 +44,10 @@ export default {
   max-width: 1.5rem;
   max-height: 1.5rem;
   padding: 0;
-  transition: background .2s ease-out;
-  background: url('~@/assets/icons/favorito_02.svg') center/contain no-repeat;
+  background: transparent;
   cursor: pointer;
   color: $congo-pink;
   border: none;
-
-  &.active {
-    background-image: url('~@/assets/icons/favorito_01.svg');
-
-    &:hover,
-    &:focus {
-      background-image: url('~@/assets/icons/favorito_03.svg');
-    }
-  }
 
   &-hidden-text {
     color: transparent;
