@@ -1,4 +1,4 @@
-import { getHeroes } from '@/services/hero';
+import { getHeroes, getHeroById } from '@/services/hero';
 
 export default {
   namespaced: true,
@@ -40,6 +40,12 @@ export default {
         commit('hero/setTotalCount', data.data.total, { root: true });
 
         return data.results;
+      });
+    },
+    getHeroById: ({ commit }, id) => {
+      return getHeroById(id).then((response) => {
+        const { data } = response.data;
+        commit('hero/setHero', data.results[0], { root: true });
       });
     },
     addFavoriteHero: ({ commit }, hero) => {
