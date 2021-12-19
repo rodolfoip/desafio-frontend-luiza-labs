@@ -18,16 +18,21 @@
             <span class="text">Ordernar por nome - A/Z</span>
             <Toggle class="toggle" :active="this.filters.orderByAsc" @toggle="toggleOrderBy" />
           </div>
-          <FavButton class="content-info__favorites" text="Somente favoritos" :active="false" />
+          <FavButton
+            class="content-info__favorites"
+            text="Somente favoritos"
+            :active="onlyFavorites"
+            @on-click="onlyFavorites = !onlyFavorites"
+          />
         </div>
         <ul class="content-list">
-          <li v-for="(hero, index) of heroesList" :key="index" class="content-list__item">
+          <li v-for="(hero, index) of fullHeroes" :key="index" class="content-list__item">
             <Card
               :title="hero.name"
               :image="hero.thumbnail"
               :active-favorite="isFavorite(hero.id)"
               :disable-favorite-button="!isFavorite(hero.id) && !favoriteIsAble"
-              @toggle-favorite="toggleFavorite(hero.id)"
+              @toggle-favorite="toggleFavorite(hero)"
             />
           </li>
         </ul>
@@ -57,7 +62,8 @@ export default {
         page: 1,
         name: '',
         orderByAsc: true
-      }
+      },
+      onlyFavorites: false
     };
   },
 
@@ -73,6 +79,9 @@ export default {
     }),
     favoriteIsAble() {
       return this.favoriteHeroes.length < 5;
+    },
+    fullHeroes() {
+      return this.onlyFavorites ? this.favoriteHeroes : this.heroesList;
     }
   },
 
@@ -88,14 +97,14 @@ export default {
       this.filters.orderByAsc = !this.filters.orderByAsc;
       this.getHeroes();
     },
-    toggleFavorite(heroId) {
-      const dispatchType = this.isFavorite(heroId)
+    toggleFavorite(hero) {
+      const dispatchType = this.isFavorite(hero.id)
         ? 'hero/removeFavoriteHero'
         : 'hero/addFavoriteHero';
-      this.$store.dispatch(dispatchType, heroId);
+      this.$store.dispatch(dispatchType, hero);
     },
     isFavorite(id) {
-      return this.favoriteHeroes.some((heroId) => heroId === id);
+      return this.favoriteHeroes.some((hero) => hero.id === id);
     }
   }
 };
