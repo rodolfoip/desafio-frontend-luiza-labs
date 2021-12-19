@@ -3,7 +3,9 @@
     <img v-show="active && !activeHover" @mouseenter="activeHover = true" src="@/assets/icons/favorito_01.svg" alt="favorite icon" class="img-responsive">
     <img v-show="active && activeHover" @mouseleave="activeHover = false" src="@/assets/icons/favorito_03.svg" alt="favorite icon" class="img-responsive">
     <img v-show="!active" src="@/assets/icons/favorito_02.svg" alt="favorite icon" class="img-responsive">
-    {{ text }}
+    <div v-if="text" class="favorite-text">
+      {{ text }}
+    </div>
     <span class="favorite-hidden-text">{{ hiddenText }}</span>
   </button>
 </template>
@@ -39,15 +41,16 @@ export default {
 .favorite {
   display: flex;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  max-width: 1.5rem;
-  max-height: 1.5rem;
   padding: 0;
+  border: none;
   background: transparent;
   cursor: pointer;
   color: $congo-pink;
-  border: none;
+  white-space: nowrap;
+
+  &-text {
+    margin-left: 1rem;
+  }
 
   &-hidden-text {
     color: transparent;
