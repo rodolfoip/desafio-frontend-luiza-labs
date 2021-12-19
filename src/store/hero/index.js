@@ -34,10 +34,10 @@ export default {
       const orderBy = orderByAsc ? 'name' : '-name';
 
       return getHeroes({ page, name, orderBy }).then((response) => {
-        const { data } = response;
-        commit('hero/setHeroes', data.data.results, { root: true });
-        commit('hero/setPageCount', Math.ceil(data.data.total / data.data.limit), { root: true });
-        commit('hero/setTotalCount', data.data.total, { root: true });
+        const { data } = response.data;
+        commit('hero/setHeroes', data.results, { root: true });
+        commit('hero/setPageCount', Math.ceil(data.total / data.limit), { root: true });
+        commit('hero/setTotalCount', FormData.total, { root: true });
 
         return data.results;
       });
