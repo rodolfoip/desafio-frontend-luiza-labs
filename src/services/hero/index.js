@@ -15,4 +15,8 @@ const getHeroes = ({ page, name, orderBy }) => {
   return API.get(`/characters${qs.stringify(query, { addQueryPrefix: true })}`);
 };
 
-export { getHeroes };
+const getHeroById = (id) => {
+  return API.get(`/characters/${id}`);
+};
+
+export { getHeroes, getHeroById };
