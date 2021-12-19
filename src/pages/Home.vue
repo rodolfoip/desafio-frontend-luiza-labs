@@ -190,19 +190,28 @@ export default {
     }
 
     &-list {
-      display: flex;
       flex-flow: row wrap;
       overflow: hidden;
       margin: 0 -1rem;
       list-style: none;
+
+      @include media-query-min('sm'){
+        display: flex;
+      }
 
       &__item {
         flex: 0 0 50%;
         margin-top: 2rem;
         padding: 0 1rem;
 
-        &:nth-child(-n+2){
+        &:first-child {
           margin-top: 0;
+        }
+
+        @include media-query-min('sm'){
+          &:nth-child(-n+2){
+            margin-top: 0;
+          }
         }
 
         @include media-query-min('md'){
@@ -210,6 +219,16 @@ export default {
 
           &:nth-child(-n+4){
             margin-top: 0;
+          }
+        }
+
+        .card {
+          max-width: 298px;
+          margin-left: auto;
+          margin-right: auto;
+
+          @include media-query-min('sm'){
+            max-width: unset;
           }
         }
       }
