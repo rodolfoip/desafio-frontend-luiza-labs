@@ -62,5 +62,10 @@ export default {
       display: flex;
       justify-content: space-between;
     }
+
+    &__title {
+      font-size: 1.25rem;
+      color: $title-color;
+    }
   }
 </style>
