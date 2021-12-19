@@ -7,13 +7,15 @@ export default {
     heroes: [],
     pageCount: 0,
     totalCount: 0,
-    favoriteHeroes: []
+    favoriteHeroes: [],
+    heroSelected: null
   },
   getters: {
     heroesList: (state) => state.heroes,
     pageCount: (state) => state.pageCount,
     totalCount: (state) => state.totalCount,
-    favoriteHeroes: (state) => state.favoriteHeroes
+    favoriteHeroes: (state) => state.favoriteHeroes,
+    heroSelected: (state) => state.heroSelected
   },
   mutations: {
     setHeroes: (state, heroes) => (state.heroes = heroes),
@@ -22,7 +24,8 @@ export default {
     addFavoriteHero: (state, heroToAdd) => state.favoriteHeroes.push(heroToAdd),
     removeFavoriteHero: (state, heroToRemove) => {
       state.favoriteHeroes = state.favoriteHeroes.filter((hero) => hero.id != heroToRemove.id);
-    }
+    },
+    setHero: (state, hero) => (state.heroSelected = hero)
   },
   actions: {
     get: ({ commit }, { page, name, orderByAsc }) => {
@@ -44,6 +47,9 @@ export default {
     },
     removeFavoriteHero: ({ commit }, hero) => {
       commit('hero/removeFavoriteHero', hero, { root: true });
+    },
+    setHero: ({ commit }, hero) => {
+      commit('hero/setHero', hero, { root: true });
     }
   }
 };
