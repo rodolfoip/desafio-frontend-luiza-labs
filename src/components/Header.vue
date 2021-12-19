@@ -7,7 +7,7 @@
       class="img-responsive header-logo"
     />
     <img v-else src="@/assets/img/logo.svg" alt="header logo" class="img-responsive header-logo" />
-    <Search :reduced="searchable" />
+    <Search :reduced="searchable" @search="onSearch" />
   </header>
 </template>
 
@@ -23,6 +23,12 @@ export default {
     searchable: {
       type: Boolean,
       default: true
+    }
+  },
+
+  methods: {
+    onSearch(value) {
+      this.$emit('on-search', value);
     }
   }
 };
