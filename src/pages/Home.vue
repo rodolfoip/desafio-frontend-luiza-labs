@@ -130,6 +130,7 @@ export default {
       this.getHeroes();
     },
     showHeroDetails(hero) {
+      this.$store.dispatch('hero/setHero', hero);
       this.$router.push({
         name: 'Hero',
         params: {
