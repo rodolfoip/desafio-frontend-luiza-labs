@@ -36,6 +36,12 @@
             />
           </li>
         </ul>
+        <Pagination
+          :page="filters.page"
+          :has-next-page="hasNextPage"
+          @previous-page="previousPage"
+          @next-page="nextPage"
+        />
       </div>
     </div>
     <footer class="footer"></footer>
@@ -53,7 +59,8 @@ export default {
     Search: () => import('@/components/SearchBar.vue'),
     Toggle: () => import('@/components/Toggle.vue'),
     Card: () => import('@/components/Card.vue'),
-    FavButton: () => import('@/components/FavoriteButton.vue')
+    FavButton: () => import('@/components/FavoriteButton.vue'),
+    Pagination: () => import('@/components/Pagination.vue')
   },
 
   data() {
@@ -82,6 +89,9 @@ export default {
     },
     fullHeroes() {
       return this.onlyFavorites ? this.favoriteHeroes : this.heroesList;
+    },
+    hasNextPage() {
+      return this.filters.page < this.pageCount;
     }
   },
 
@@ -105,6 +115,14 @@ export default {
     },
     isFavorite(id) {
       return this.favoriteHeroes.some((hero) => hero.id === id);
+    },
+    previousPage() {
+      this.filters.page--;
+      this.getHeroes();
+    },
+    nextPage() {
+      this.filters.page++;
+      this.getHeroes();
     }
   }
 };
@@ -214,7 +232,7 @@ export default {
     &-list {
       flex-flow: row wrap;
       overflow: hidden;
-      margin: 0 -1rem;
+      margin: 0 -1rem 3rem;
       list-style: none;
 
       @include media-query-min('sm') {

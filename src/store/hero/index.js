@@ -6,16 +6,19 @@ export default {
   state: {
     heroes: [],
     pageCount: 0,
+    totalCount: 0,
     favoriteHeroes: []
   },
   getters: {
     heroesList: (state) => state.heroes,
     pageCount: (state) => state.pageCount,
+    totalCount: (state) => state.totalCount,
     favoriteHeroes: (state) => state.favoriteHeroes
   },
   mutations: {
     setHeroes: (state, heroes) => (state.heroes = heroes),
     setPageCount: (state, count) => (state.pageCount = count),
+    setTotalCount: (state, totalCount) => (state.totalCount = totalCount),
     addFavoriteHero: (state, heroToAdd) => state.favoriteHeroes.push(heroToAdd),
     removeFavoriteHero: (state, heroToRemove) => {
       state.favoriteHeroes = state.favoriteHeroes.filter((hero) => hero.id != heroToRemove.id);
@@ -30,7 +33,8 @@ export default {
       return getHeroes({ page, name, orderBy }).then((response) => {
         const { data } = response;
         commit('hero/setHeroes', data.data.results, { root: true });
-        commit('hero/setPageCount', data.data.count, { root: true });
+        commit('hero/setPageCount', Math.ceil(data.data.total / data.data.limit), { root: true });
+        commit('hero/setTotalCount', data.data.total, { root: true });
 
         return data.results;
       });
