@@ -24,12 +24,7 @@
             <span class="text">Ordernar por nome - A/Z</span>
             <Toggle class="toggle" :active="this.filters.orderByAsc" @toggle="toggleOrderBy" />
           </div>
-          <button class="content-info__favorites">
-            <figure class="icon">
-              <figcaption>Heart icon</figcaption>
-            </figure>
-            Somente favoritos
-          </button>
+          <FavButton class="content-info__favorites" text="Somente favoritos" :active="false" />
         </div>
         <ul class="content-list">
           <li v-for="(hero, index) of heroesList" :key="index" class="content-list__item">
@@ -53,6 +48,7 @@ export default {
     Search: () => import('@/components/SearchBar.vue'),
     Toggle: () => import('@/components/Toggle.vue'),
     Card: () => import('@/components/Card.vue'),
+    FavButton: () => import('@/components/FavoriteButton.vue'),
   },
 
   data() {
@@ -144,24 +140,22 @@ export default {
 
       &__order-by,
       &__favorites {
-        display: flex;
-        align-items: center;
-        flex: 1 0 auto;
         margin-bottom: .5rem;
-        color: $congo-pink;
 
         @include media-query-min('md') {
           margin-bottom: 0;
         }
-
-        @include media-query-min('lg') {
-          flex-grow: 0;
-        }
       }
 
       &__order-by {
+        display: flex;
+        align-items: center;
+        flex: 1 0 auto;
+        color: $congo-pink;
+
         @include media-query-min('md') {
           margin-right: 2rem;
+          flex-grow: 0;
         }
 
         > .text {
@@ -186,38 +180,10 @@ export default {
       }
 
       &__favorites {
-        border: none;
-        background: none;
         font-size: unset;
-        padding: 0;
 
-        &:hover,
-        &:focus {
-          cursor: pointer;
-
-          > .icon {
-            background-image: url('~@/assets/icons/favorito_03.svg');
-          }
-        }
-
-        > .icon {
-          width: 100%;
-          height: 100%;
-          max-width: 1.25rem;
-          max-height: 1.25rem;
-          margin-right: 1rem;
-          background: url('~@/assets/icons/favorito_01.svg') center/cover no-repeat;
-          transition: background .2s ease-out;
-
-          @include media-query-min('md') {
-            max-width: 1.45rem;
-            max-height: 1.45rem;
-          }
-
-          > figcaption {
-            color: transparent;
-            opacity: 0;
-          }
+        @include media-query-min('md') {
+          justify-content: flex-end;
         }
       }
     }
