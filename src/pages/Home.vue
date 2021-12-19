@@ -22,7 +22,13 @@
         </div>
         <ul class="content-list">
           <li v-for="(hero, index) of heroesList" :key="index" class="content-list__item">
-            <Card :title="hero.name" :image="hero.thumbnail" />
+            <Card
+              :title="hero.name"
+              :image="hero.thumbnail"
+              :active-favorite="isFavorite(hero.id)"
+              :disable-favorite-button="!isFavorite(hero.id) && !favoriteIsAble"
+              @toggle-favorite="toggleFavorite(hero.id)"
+            />
           </li>
         </ul>
       </div>
@@ -62,8 +68,12 @@ export default {
   computed: {
     ...mapGetters({
       heroesList: 'hero/heroesList',
-      pageCount: 'hero/pageCount'
-    })
+      pageCount: 'hero/pageCount',
+      favoriteHeroes: 'hero/favoriteHeroes'
+    }),
+    favoriteIsAble() {
+      return this.favoriteHeroes.length < 5;
+    }
   },
 
   methods: {
@@ -77,6 +87,15 @@ export default {
     toggleOrderBy() {
       this.filters.orderByAsc = !this.filters.orderByAsc;
       this.getHeroes();
+    },
+    toggleFavorite(heroId) {
+      const dispatchType = this.isFavorite(heroId)
+        ? 'hero/removeFavoriteHero'
+        : 'hero/addFavoriteHero';
+      this.$store.dispatch(dispatchType, heroId);
+    },
+    isFavorite(id) {
+      return this.favoriteHeroes.some((heroId) => heroId === id);
     }
   }
 };
