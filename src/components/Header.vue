@@ -1,12 +1,30 @@
 <template>
-  <header class="header">
-    <img src="@/assets/img/logo.svg" alt="header logo" class="img-responsive header-logo" />
+  <header class="header" :class="{ search: searchable }">
+    <img
+      v-if="searchable"
+      src="@/assets/img/logo_menor.svg"
+      alt="header logo"
+      class="img-responsive header-logo"
+    />
+    <img v-else src="@/assets/img/logo.svg" alt="header logo" class="img-responsive header-logo" />
+    <Search :reduced="searchable" />
   </header>
 </template>
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+
+  components: {
+    Search: () => import('@/components/SearchBar.vue')
+  },
+
+  props: {
+    searchable: {
+      type: Boolean,
+      default: true
+    }
+  }
 };
 </script>
 
