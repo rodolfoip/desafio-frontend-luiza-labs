@@ -4,7 +4,7 @@
       <img :src="imageUrl" alt="hero image" class="img-responsive" />
     </figure>
     <div class="card__content">
-      <h4 class="card__title">
+      <h4 class="card__title" :class="{ clickable: clickable }" @click="onClick">
         {{ title }}
       </h4>
       <FavButton
@@ -42,6 +42,10 @@ export default {
     disableFavoriteButton: {
       type: Boolean,
       default: false
+    },
+    clickable: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -56,6 +60,9 @@ export default {
       if (!this.disableFavoriteButton) {
         this.$emit('toggle-favorite');
       }
+    },
+    onClick() {
+      this.$emit('on-click');
     }
   }
 };
@@ -84,6 +91,16 @@ export default {
   &__title {
     font-size: 1.25rem;
     color: $title-color;
+
+    &.clickable {
+      cursor: pointer;
+      transition: filter 0.15s;
+
+      &:hover,
+      &:focus {
+        filter: brightness(1.5);
+      }
+    }
   }
 }
 </style>
