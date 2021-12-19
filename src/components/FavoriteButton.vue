@@ -1,5 +1,5 @@
 <template>
-  <button class="favorite" :class="{ active: active }">
+  <button class="favorite" :class="{ disabled: disabled }" @click="onClick">
     <img
       v-show="active && !activeHover"
       @mouseenter="activeHover = true"
@@ -43,6 +43,10 @@ export default {
     active: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -50,6 +54,12 @@ export default {
     return {
       activeHover: false
     };
+  },
+
+  methods: {
+    onClick() {
+      this.$emit('on-click');
+    }
   }
 };
 </script>
@@ -64,6 +74,10 @@ export default {
   cursor: pointer;
   color: $congo-pink;
   white-space: nowrap;
+
+  &.disabled {
+    cursor: not-allowed;
+  }
 
   &-text {
     margin-left: 1rem;
