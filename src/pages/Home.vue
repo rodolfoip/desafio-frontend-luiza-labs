@@ -12,8 +12,8 @@
       </div>
       <div class="content">
         <div class="content-info">
-          <div class="content-info__count">
-            Encontrados 20 heróis
+          <div v-if="pageCount" class="content-info__count">
+            Encontrados {{ pageCount }} heróis
           </div>
           <div class="content-info__order-by">
             <img
@@ -68,6 +68,7 @@ export default {
   computed: {
     ...mapGetters({
       heroesList: 'hero/heroesList',
+      pageCount: 'hero/pageCount',
     }),
   },
 
