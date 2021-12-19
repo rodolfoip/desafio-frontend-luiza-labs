@@ -16,9 +16,9 @@ export default {
   mutations: {
     setHeroes: (state, heroes) => (state.heroes = heroes),
     setPageCount: (state, count) => (state.pageCount = count),
-    addFavoriteHero: (state, heroId) => state.favoriteHeroes.push(heroId),
-    removeFavoriteHero: (state, heroId) => {
-      state.favoriteHeroes = state.favoriteHeroes.filter((hero) => hero != heroId);
+    addFavoriteHero: (state, heroToAdd) => state.favoriteHeroes.push(heroToAdd),
+    removeFavoriteHero: (state, heroToRemove) => {
+      state.favoriteHeroes = state.favoriteHeroes.filter((hero) => hero.id != heroToRemove.id);
     }
   },
   actions: {
@@ -35,11 +35,11 @@ export default {
         return data.results;
       });
     },
-    addFavoriteHero: ({ commit }, heroId) => {
-      commit('hero/addFavoriteHero', heroId, { root: true });
+    addFavoriteHero: ({ commit }, hero) => {
+      commit('hero/addFavoriteHero', hero, { root: true });
     },
-    removeFavoriteHero: ({ commit }, heroId) => {
-      commit('hero/removeFavoriteHero', heroId, { root: true });
+    removeFavoriteHero: ({ commit }, hero) => {
+      commit('hero/removeFavoriteHero', hero, { root: true });
     }
   }
 };
