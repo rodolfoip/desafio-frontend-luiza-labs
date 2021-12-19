@@ -1,13 +1,54 @@
 <template>
   <div class="pagination">
-    <button class="pagination__previous disabled">Anterior</button>
-    <button class="pagination__next">Próximo</button>
+    <button
+      class="pagination__previous"
+      :class="{ disabled: !hasPreviousPage }"
+      @click="onClickPrevious"
+    >
+      Anterior
+    </button>
+    <div class="pagination__page">
+      {{ page }}
+    </div>
+    <button class="pagination__next" :class="{ disabled: !hasNextPage }" @click="onClickNext">
+      Próximo
+    </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Pagination'
+  name: 'Pagination',
+
+  props: {
+    page: {
+      type: Number,
+      required: true
+    },
+    hasNextPage: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  computed: {
+    hasPreviousPage() {
+      return this.page !== 1;
+    }
+  },
+
+  methods: {
+    onClickPrevious() {
+      if (this.hasPreviousPage) {
+        this.$emit('previous-page');
+      }
+    },
+    onClickNext() {
+      if (this.hasNextPage) {
+        this.$emit('next-page');
+      }
+    }
+  }
 };
 </script>
 
@@ -28,8 +69,7 @@ export default {
     color: $white;
     transition: background-color 0.15s;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: $red-dark;
     }
 
@@ -39,8 +79,17 @@ export default {
     }
   }
 
-  &__next {
-    margin-left: 1rem;
+  &__page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    border-radius: 4px;
+    background-color: $linen;
+    color: $title-color;
   }
 }
 </style>
