@@ -12,7 +12,9 @@
       </div>
       <div class="content">
         <div class="content-info">
-          <div v-if="pageCount" class="content-info__count">Encontrados {{ pageCount }} heróis</div>
+          <div v-if="fullHeroes" class="content-info__count">
+            Encontrados {{ fullHeroes.length }} heróis
+          </div>
           <div class="content-info__order-by">
             <img src="@/assets/icons/ic_heroi.svg" alt="hero icon" class="img-responsive hero" />
             <span class="text">Ordernar por nome - A/Z</span>
@@ -37,6 +39,7 @@
           </li>
         </ul>
         <Pagination
+          v-if="!onlyFavorites"
           :page="filters.page"
           :has-next-page="hasNextPage"
           @previous-page="previousPage"
