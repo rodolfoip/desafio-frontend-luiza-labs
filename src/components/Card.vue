@@ -7,7 +7,13 @@
       <h4 class="card__title">
         {{ title }}
       </h4>
-      <FavButton class="card__favorite" hiddenText="favoritar herói" :active="false" />
+      <FavButton
+        class="card__favorite"
+        hiddenText="favoritar herói"
+        :disabled="disableFavoriteButton"
+        :active="activeFavorite"
+        @on-click="toggleFavorite"
+      />
     </div>
   </div>
 </template>
@@ -28,12 +34,28 @@ export default {
     image: {
       type: Object,
       required: true
+    },
+    activeFavorite: {
+      type: Boolean,
+      default: false
+    },
+    disableFavoriteButton: {
+      type: Boolean,
+      default: false
     }
   },
 
   computed: {
     imageUrl() {
       return `${this.image.path}.${this.image.extension}`;
+    }
+  },
+
+  methods: {
+    toggleFavorite() {
+      if (!this.disableFavoriteButton) {
+        this.$emit('toggle-favorite');
+      }
     }
   }
 };
