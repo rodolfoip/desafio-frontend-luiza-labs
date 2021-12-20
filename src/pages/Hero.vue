@@ -98,10 +98,7 @@ export default {
     if (this.$route.params.id !== this.heroSelected?.id) {
       this.getHero();
     }
-
-    if (!this.comics.length) {
-      this.getComics();
-    }
+    this.getComics();
   },
 
   methods: {
