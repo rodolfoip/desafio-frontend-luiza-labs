@@ -8,7 +8,12 @@
             <h1 class="title">
               {{ heroSelected.name }}
             </h1>
-            <FavButton />
+            <FavButton
+              hiddenText="favoritar herói"
+              :active="isFavorite(heroSelected.id)"
+              :disabled="!isFavorite(heroSelected.id) && !favoriteIsAble"
+              @on-click="toggleFavorite(heroSelected)"
+            />
           </div>
           <div class="hero__content">
             <p class="description">
@@ -57,9 +62,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { favoriteMixin } from '@/mixins/favorites';
 
 export default {
   name: 'Hero',
+
+  mixins: [favoriteMixin],
 
   components: {
     Header: () => import('@/components/Header.vue'),
