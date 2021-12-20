@@ -1,6 +1,6 @@
 <template>
-  <form @submit.prevent="search">
-    <label for="search" class="search">
+  <form @submit.prevent="search" class="search-wrapper">
+    <label for="search" class="search" :class="{ reduced: reduced }">
       <button class="search__button" type="submit">
         <img
           src="@/assets/icons/ic_busca.svg"
@@ -23,6 +23,13 @@
 <script>
 export default {
   name: 'searchBar',
+
+  props: {
+    reduced: {
+      type: Boolean,
+      default: false
+    }
+  },
 
   data() {
     return {
@@ -69,6 +76,10 @@ export default {
   @include media-query-min('xl') {
     height: 5rem;
     max-width: 56rem;
+  }
+
+  &-wrapper {
+    flex: 1;
   }
 
   &__button {
@@ -124,6 +135,20 @@ export default {
     &::placeholder {
       vertical-align: middle;
       opacity: 1;
+    }
+  }
+
+  &.reduced {
+    background-color: $white;
+    height: 2.5rem;
+    margin-left: 0;
+
+    @include media-query-min('sm') {
+      max-width: 30rem;
+      padding: 0 1.5rem;
+    }
+    .search__input {
+      color: $text-color;
     }
   }
 }
