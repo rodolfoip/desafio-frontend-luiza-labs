@@ -1,4 +1,4 @@
-import { getHeroes, getHeroById } from '@/services/hero';
+import { getHeroes, getHeroById, getHeroLastComics } from '@/services/hero';
 
 export default {
   namespaced: true,
@@ -8,14 +8,16 @@ export default {
     pageCount: 0,
     totalCount: 0,
     favoriteHeroes: [],
-    heroSelected: null
+    heroSelected: null,
+    comics: []
   },
   getters: {
     heroesList: (state) => state.heroes,
     pageCount: (state) => state.pageCount,
     totalCount: (state) => state.totalCount,
     favoriteHeroes: (state) => state.favoriteHeroes,
-    heroSelected: (state) => state.heroSelected
+    heroSelected: (state) => state.heroSelected,
+    comics: (state) => state.comics
   },
   mutations: {
     setHeroes: (state, heroes) => (state.heroes = heroes),
@@ -25,7 +27,8 @@ export default {
     removeFavoriteHero: (state, heroToRemove) => {
       state.favoriteHeroes = state.favoriteHeroes.filter((hero) => hero.id != heroToRemove.id);
     },
-    setHero: (state, hero) => (state.heroSelected = hero)
+    setHero: (state, hero) => (state.heroSelected = hero),
+    setComics: (state, comics) => (state.comics = comics)
   },
   actions: {
     get: ({ commit }, { page, name, orderByAsc }) => {
@@ -46,6 +49,12 @@ export default {
       return getHeroById(id).then((response) => {
         const { data } = response.data;
         commit('hero/setHero', data.results[0], { root: true });
+      });
+    },
+    getHeroComics: ({ commit }, id) => {
+      return getHeroLastComics(id).then((response) => {
+        const { data } = response.data;
+        commit('hero/setComics', data.results, { root: true });
       });
     },
     addFavoriteHero: ({ commit }, hero) => {
