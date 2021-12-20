@@ -1,12 +1,19 @@
 <template>
   <header class="header" :class="{ search: searchable }">
-    <img
-      v-if="searchable"
-      src="@/assets/img/logo_menor.svg"
-      alt="header logo"
-      class="img-responsive header-logo"
-    />
-    <img v-else src="@/assets/img/logo.svg" alt="header logo" class="img-responsive header-logo" />
+    <router-link :to="headerLink">
+      <img
+        v-if="searchable"
+        src="@/assets/img/logo_menor.svg"
+        alt="header logo"
+        class="img-responsive header-logo"
+      />
+      <img
+        v-else
+        src="@/assets/img/logo.svg"
+        alt="header logo"
+        class="img-responsive header-logo"
+      />
+    </router-link>
     <Search v-if="searchable" :reduced="searchable" @search="onSearch" />
   </header>
 </template>
@@ -23,6 +30,10 @@ export default {
     searchable: {
       type: Boolean,
       default: false
+    },
+    headerLink: {
+      type: String,
+      default: '/'
     }
   },
 
@@ -39,6 +50,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
 }
 </style>
