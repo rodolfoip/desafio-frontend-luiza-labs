@@ -33,11 +33,23 @@
                 {{ heroSelected.series.available }}
               </div>
             </div>
+            <div class="last-release">
+              <h4 class="last-release__title">Último lançamento:</h4>
+              <div class="last-release__date">13 fev. 2020</div>
+            </div>
           </div>
         </div>
         <figure class="hero__image">
           <img :src="imageUrl" alt="heroSelected.name" class="img-responsive" />
         </figure>
+      </section>
+      <section class="comics">
+        <h2 class="comics__title">Últimos lançamentos</h2>
+        <ul v-if="comics" class="comics__list">
+          <li class="comic" v-for="(comic, index) of comics" :key="index">
+            <Card :title="comic.title" :image="comic.thumbnail" />
+          </li>
+        </ul>
       </section>
     </div>
   </div>
@@ -51,12 +63,14 @@ export default {
 
   components: {
     Header: () => import('@/components/Header.vue'),
-    FavButton: () => import('@/components/FavoriteButton.vue')
+    FavButton: () => import('@/components/FavoriteButton.vue'),
+    Card: () => import('@/components/Card.vue')
   },
 
   computed: {
     ...mapGetters({
-      heroSelected: 'hero/heroSelected'
+      heroSelected: 'hero/heroSelected',
+      comics: 'hero/comics'
     }),
     imageUrl() {
       return `${this.heroSelected.thumbnail.path}.${this.heroSelected.thumbnail.extension}`;
@@ -67,11 +81,18 @@ export default {
     if (this.$route.params.id !== this.heroSelected?.id) {
       this.getHero();
     }
+
+    if (!this.comics.length) {
+      this.getComics();
+    }
   },
 
   methods: {
     getHero() {
       this.$store.dispatch('hero/getHeroById', this.$route.params.id);
+    },
+    getComics() {
+      this.$store.dispatch('hero/getHeroComics', this.$route.params.id);
     }
   }
 };
@@ -91,6 +112,7 @@ export default {
   .hero {
     display: flex;
     flex-flow: row nowrap;
+    margin-bottom: 3rem;
 
     &__body {
       flex-basis: 30%;
@@ -124,13 +146,22 @@ export default {
       }
 
       .comic,
+      .films,
+      .last-release {
+        color: $title-color;
+
+        &__title {
+          font-weight: 600;
+        }
+      }
+
+      .comic,
       .films {
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-between;
         flex-basis: 50%;
-        font-weight: 600;
-        color: $title-color;
+        margin-bottom: 2.5rem;
 
         &__title {
           margin-bottom: 0.75rem;
@@ -145,6 +176,15 @@ export default {
           }
         }
       }
+
+      .last-release {
+        display: flex;
+        flex-flow: row nowrap;
+
+        &__title {
+          margin-right: 0.75rem;
+        }
+      }
     }
 
     &__image {
@@ -152,6 +192,44 @@ export default {
       max-width: 25rem;
       margin-left: auto;
       margin-right: auto;
+    }
+  }
+
+  .comics {
+    &__title {
+      margin-bottom: 2rem;
+      color: $title-color;
+    }
+
+    &__list {
+      flex-flow: row wrap;
+      overflow: hidden;
+      margin: 0 -1rem 3rem;
+      list-style: none;
+
+      @include media-query-min('sm') {
+        display: flex;
+      }
+
+      .comic {
+        flex: 0 0 50%;
+        margin-top: 2rem;
+        padding: 0 1rem;
+
+        @include media-query-min('sm') {
+          &:nth-child(-n + 2) {
+            margin-top: 0;
+          }
+        }
+
+        @include media-query-min('md') {
+          flex-basis: (100% /5);
+
+          &:nth-child(-n + 5) {
+            margin-top: 0;
+          }
+        }
+      }
     }
   }
 }
