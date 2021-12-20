@@ -8,7 +8,7 @@
           Mergulhe no domínio deslumbrante de todos os personagens clássicos que você ama - e
           aqueles que vcoê descrubrirá em breve!
         </p>
-        <Search @search="searchByName" />
+        <Search @search="searchByName" :searchInput="filters.name" />
       </div>
       <div class="content">
         <div class="content-info">
@@ -84,7 +84,12 @@ export default {
   },
 
   mounted() {
-    this.getHeroes();
+    if (!this.$route.query.search) {
+      this.getHeroes();
+    } else {
+      this.searchByName(this.$route.query.search);
+      this.$router.replace({ search: null });
+    }
   },
 
   computed: {
