@@ -4,7 +4,10 @@ const favoriteMixin = {
   computed: {
     ...mapGetters({
       favoriteHeroes: 'hero/favoriteHeroes'
-    })
+    }),
+    favoriteIsAble() {
+      return this.favoriteHeroes.length < 5;
+    }
   },
 
   methods: {

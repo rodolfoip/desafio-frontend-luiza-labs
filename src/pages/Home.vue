@@ -92,9 +92,6 @@ export default {
       heroesList: 'hero/heroesList',
       pageCount: 'hero/pageCount'
     }),
-    favoriteIsAble() {
-      return this.favoriteHeroes.length < 5;
-    },
     fullHeroes() {
       return this.onlyFavorites ? this.favoriteHeroes : this.heroesList;
     },
