@@ -35,6 +35,7 @@
               :active-favorite="isFavorite(hero.id)"
               :disable-favorite-button="!isFavorite(hero.id) && !favoriteIsAble"
               clickable
+              favorite-button
               @on-click="showHeroDetails(hero)"
               @toggle-favorite="toggleFavorite(hero)"
             />
