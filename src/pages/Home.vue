@@ -50,7 +50,7 @@
         />
       </div>
     </div>
-    <footer class="footer"></footer>
+    <Footer />
   </div>
 </template>
 
@@ -69,7 +69,8 @@ export default {
     Toggle: () => import('@/components/Toggle.vue'),
     Card: () => import('@/components/Card.vue'),
     FavButton: () => import('@/components/FavoriteButton.vue'),
-    Pagination: () => import('@/components/Pagination.vue')
+    Pagination: () => import('@/components/Pagination.vue'),
+    Footer: () => import('@/components/Footer.vue')
   },
 
   data() {
@@ -283,12 +284,6 @@ export default {
         }
       }
     }
-  }
-
-  .footer {
-    height: 3rem;
-    margin-top: 3rem;
-    background-color: $red;
   }
 }
 </style>
