@@ -86,7 +86,8 @@ export default {
     },
     lastComicReleaseDate() {
       if (this.comics.length) {
-        const lastComic = this.comics[0].dates.find((date) => date.type === 'onsaleDate');
+        const comics = [...this.comics];
+        const lastComic = comics.pop().dates.find((date) => date.type === 'onsaleDate');
         return dayjs(lastComic.date).format('DD MMM[.] YYYY');
       }
       return '';
