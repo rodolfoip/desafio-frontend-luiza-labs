@@ -1,24 +1,22 @@
-# desafio-luiza-labs
+# Desafio front-end LuizaLabs
 
-## Project setup
+## Configuração do projeto
+Rode o comando abaixo para instalar as depêndencias do projeto.
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compila o projeto para desenvolvimento com hot-reload
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compila e minifica o projeto para produção
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### Lints and corrige arquivos
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
