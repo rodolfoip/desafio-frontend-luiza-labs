@@ -8,6 +8,7 @@
         {{ title }}
       </h4>
       <FavButton
+        v-if="favoriteButton"
         class="card__favorite"
         hiddenText="favoritar herói"
         :disabled="disableFavoriteButton"
@@ -34,6 +35,10 @@ export default {
     image: {
       type: Object,
       required: true
+    },
+    favoriteButton: {
+      type: Boolean,
+      default: false
     },
     activeFavorite: {
       type: Boolean,
