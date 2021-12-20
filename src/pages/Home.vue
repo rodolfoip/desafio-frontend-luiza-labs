@@ -115,12 +115,6 @@ export default {
       this.filters.orderByAsc = !this.filters.orderByAsc;
       this.getHeroes();
     },
-    toggleFavorite(hero) {
-      const dispatchType = this.isFavorite(hero.id)
-        ? 'hero/removeFavoriteHero'
-        : 'hero/addFavoriteHero';
-      this.$store.dispatch(dispatchType, hero);
-    },
     previousPage() {
       this.filters.page--;
       this.getHeroes();
