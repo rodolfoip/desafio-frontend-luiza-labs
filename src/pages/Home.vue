@@ -56,9 +56,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { favoriteMixin } from '@/mixins/favorites';
 
 export default {
   name: 'Home',
+
+  mixins: [favoriteMixin],
 
   components: {
     Header: () => import('@/components/Header.vue'),
@@ -87,8 +90,7 @@ export default {
   computed: {
     ...mapGetters({
       heroesList: 'hero/heroesList',
-      pageCount: 'hero/pageCount',
-      favoriteHeroes: 'hero/favoriteHeroes'
+      pageCount: 'hero/pageCount'
     }),
     favoriteIsAble() {
       return this.favoriteHeroes.length < 5;
@@ -118,9 +120,6 @@ export default {
         ? 'hero/removeFavoriteHero'
         : 'hero/addFavoriteHero';
       this.$store.dispatch(dispatchType, hero);
-    },
-    isFavorite(id) {
-      return this.favoriteHeroes.some((hero) => hero.id === id);
     },
     previousPage() {
       this.filters.page--;
