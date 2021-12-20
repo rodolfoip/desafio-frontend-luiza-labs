@@ -3,7 +3,7 @@
     <figure class="card__image">
       <img :src="imageUrl" alt="hero image" class="img-responsive" />
     </figure>
-    <div class="card__content">
+    <div class="card__content" :class="{ 'only-title': !favoriteButton }">
       <h4 class="card__title" :class="{ clickable: clickable }" @click="onClick">
         {{ title }}
       </h4>
@@ -91,6 +91,14 @@ export default {
   &__content {
     display: flex;
     justify-content: space-between;
+
+    &.only-title {
+      justify-content: center;
+
+      @include media-query-min('md') {
+        justify-content: space-between;
+      }
+    }
   }
 
   &__title {
