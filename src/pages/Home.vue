@@ -112,10 +112,12 @@ export default {
     },
     searchByName(value) {
       this.filters.name = value;
+      this.filters.page = 1;
       this.getHeroes();
     },
     toggleOrderBy() {
       this.filters.orderByAsc = !this.filters.orderByAsc;
+      this.filters.page = 1;
       this.getHeroes();
     },
     previousPage() {
