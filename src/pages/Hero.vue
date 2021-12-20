@@ -126,19 +126,44 @@ export default {
   flex-flow: column nowrap;
   flex: 1;
   justify-content: space-between;
+  background-color: $linen;
 
   .header {
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
+    flex-direction: column;
+
+    @include media-query-min('md') {
+      flex-direction: row;
+      margin-bottom: 3.5rem;
+    }
+
+    @include media-query-min('lg') {
+      margin-bottom: 5rem;
+    }
   }
 
   .hero {
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: column;
     margin-bottom: 3rem;
 
+    @include media-query-min('md') {
+      flex-direction: row;
+    }
+
     &__body {
-      flex-basis: 30%;
-      margin-right: 4rem;
+      overflow: hidden;
+      margin-bottom: 2rem;
+
+      @include media-query-min('md') {
+        flex-basis: 50%;
+        margin-bottom: 0;
+        margin-right: 4rem;
+      }
+
+      @include media-query-min('lg') {
+        flex-basis: 30%;
+      }
     }
 
     &__info {
@@ -237,14 +262,25 @@ export default {
         flex: 0 0 50%;
         margin-top: 2rem;
         padding: 0 1rem;
+        text-align: center;
 
         @include media-query-min('sm') {
+          text-align-last: left;
+
           &:nth-child(-n + 2) {
             margin-top: 0;
           }
         }
 
-        @include media-query-min('md') {
+        @include media-query-min('lg') {
+          flex-basis: (100% /4);
+
+          &:nth-child(-n + 4) {
+            margin-top: 0;
+          }
+        }
+
+        @include media-query-min('xl') {
           flex-basis: (100% /5);
 
           &:nth-child(-n + 5) {
