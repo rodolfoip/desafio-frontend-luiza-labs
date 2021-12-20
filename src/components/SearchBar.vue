@@ -28,7 +28,15 @@ export default {
     reduced: {
       type: Boolean,
       default: false
+    },
+    searchInput: {
+      type: String,
+      default: ''
     }
+  },
+
+  beforeMount() {
+    this.searchValue = this.searchInput;
   },
 
   data() {
