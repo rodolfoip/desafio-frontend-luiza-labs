@@ -1,7 +1,7 @@
 <template>
   <div class="hero-page">
     <div class="container">
-      <Header />
+      <Header searchable />
       <section v-if="heroSelected" class="hero">
         <div class="hero__body">
           <div class="hero__info">

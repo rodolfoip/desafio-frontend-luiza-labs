@@ -7,7 +7,7 @@
       class="img-responsive header-logo"
     />
     <img v-else src="@/assets/img/logo.svg" alt="header logo" class="img-responsive header-logo" />
-    <Search :reduced="searchable" @search="onSearch" />
+    <Search v-if="searchable" :reduced="searchable" @search="onSearch" />
   </header>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   props: {
     searchable: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
 
