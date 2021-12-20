@@ -1,7 +1,7 @@
 <template>
   <div class="hero-page">
     <div class="container">
-      <Header searchable />
+      <Header searchable @on-search="searchByName" />
       <section v-if="heroSelected" class="hero">
         <div class="hero__body">
           <div class="hero__info">
@@ -107,6 +107,14 @@ export default {
     },
     getComics() {
       this.$store.dispatch('hero/getHeroComics', this.$route.params.id);
+    },
+    searchByName(value) {
+      this.$router.push({
+        name: 'Home',
+        query: {
+          search: value
+        }
+      });
     }
   }
 };
