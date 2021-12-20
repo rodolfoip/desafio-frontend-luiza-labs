@@ -8,6 +8,10 @@ Rode o comando abaixo para instalar as depêndencias do projeto.
 ```
 npm install
 ```
+### Variável de ambiente
+Antes de compilar o projeto, crie uma variável de ambiente para inicar o projeto localmente.
+Essa variável deve ter o nome .env.local, o conteúdo necessário pode ser visto dentro de .env.example.
+É necessário gerar uma apiKey no [site](https://developer.marvel.com/) da marvel.
 
 ### Compila o projeto para desenvolvimento com hot-reload
 ```
