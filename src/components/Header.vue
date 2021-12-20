@@ -58,6 +58,7 @@ export default {
 
       @include media-query-min('md') {
         margin-bottom: 0;
+        margin-right: 2rem;
       }
     }
   }
