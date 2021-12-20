@@ -20,7 +20,7 @@ const getHeroById = (id) => {
 };
 
 const getHeroLastComics = (id) => {
-  return API.get(`/characters/${id}/comics?orderBy=onsaleDate&limit=10`);
+  return API.get(`/characters/${id}/comics?orderBy=-onsaleDate&limit=10`);
 };
 
 export { getHeroes, getHeroById, getHeroLastComics };
