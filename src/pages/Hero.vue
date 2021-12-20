@@ -57,6 +57,7 @@
         </ul>
       </section>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -73,7 +74,8 @@ export default {
   components: {
     Header: () => import('@/components/Header.vue'),
     FavButton: () => import('@/components/FavoriteButton.vue'),
-    Card: () => import('@/components/Card.vue')
+    Card: () => import('@/components/Card.vue'),
+    Footer: () => import('@/components/Footer.vue')
   },
 
   computed: {
