@@ -40,7 +40,7 @@
             </div>
             <div class="last-release">
               <h4 class="last-release__title">Último lançamento:</h4>
-              <div class="last-release__date">13 fev. 2020</div>
+              <div class="last-release__date">{{ lastComicReleaseDate }}</div>
             </div>
           </div>
         </div>
@@ -63,6 +63,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { favoriteMixin } from '@/mixins/favorites';
+import dayjs from 'dayjs';
 
 export default {
   name: 'Hero',
@@ -82,6 +83,13 @@ export default {
     }),
     imageUrl() {
       return `${this.heroSelected.thumbnail.path}.${this.heroSelected.thumbnail.extension}`;
+    },
+    lastComicReleaseDate() {
+      if (this.comics.length) {
+        const lastComic = this.comics[0].dates.find((date) => date.type === 'onsaleDate');
+        return dayjs(lastComic.date).format('DD MMM[.] YYYY');
+      }
+      return '';
     }
   },
 
