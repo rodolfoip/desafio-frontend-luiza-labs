@@ -58,7 +58,9 @@ export default {
 
   methods: {
     onClick() {
-      this.$emit('on-click');
+      if (!this.disabled) {
+        this.$emit('on-click');
+      }
     }
   }
 };
