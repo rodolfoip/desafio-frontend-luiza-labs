@@ -1,6 +1,6 @@
 <template>
   <header class="header" :class="{ search: searchable }">
-    <router-link :to="headerLink">
+    <router-link :to="headerLink" class="header__link">
       <img
         v-if="searchable"
         src="@/assets/img/logo_menor.svg"
@@ -51,5 +51,15 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 1rem 0;
+
+  &.search {
+    .header__link {
+      margin-bottom: 2rem;
+
+      @include media-query-min('md') {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 </style>
